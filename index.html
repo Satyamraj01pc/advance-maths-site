@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics Practice Sheets</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 0.8rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 1.8rem;
+        }
+        
+        .logo h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.4rem 0;
+            position: relative;
+            font-size: 0.95rem;
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover:after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.85)), url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+        
+        .hero h2 {
+            font-size: 2.4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.7rem 1.6rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Chapters Section */
+        .section-title {
+            text-align: center;
+            margin: 2.5rem 0 1.5rem;
+            color: var(--primary);
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 0.5rem;
+        }
+        
+        .chapter-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chapter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+        
+        .chapter-header {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            padding: 1.2rem;
+            text-align: center;
+        }
+        
+        .chapter-header h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+        }
+        
+        .chapter-header p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        
+        .chapter-content {
+            padding: 1.2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chapter-content p {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .resources-list {
+            list-style: none;
+            margin-top: auto;
+        }
+        
+        .resources-list li {
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .resources-list a {
+            color: var(--secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .resources-list a:hover {
+            color: var(--accent);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2.5rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.4rem;
+        }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            width: 35px;
+            height: 3px;
+            background-color: var(--accent);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-section p {
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.8rem;
+            margin-top: 1.8rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+        
+        /* PDF Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.92);
+        }
+        
+        .modal-content {
+            position: relative;
+            margin: 1.5% auto;
+            padding: 15px;
+            width: 92%;
+            max-width: 980px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+        }
+        
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 12px;
+            right: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .close:hover {
+            color: var(--accent);
+        }
+        
+        .pdf-viewer {
+            width: 100%;
+            height: 78vh;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        .pdf-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+            padding: 8px;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+        
+        .pdf-info {
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .chapters-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 3rem 1rem;
+            }
+            
+            .chapters-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .modal-content {
+                width: 96%;
+                margin: 3% auto;
+                padding: 10px;
+            }
+            
+            .pdf-controls {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo h1 {
+                font-size: 1.4rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-calculator"></i>
+                <h1>Mathematics Practice Sheets</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#chapters">Chapters</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Master Mathematics with Practice Sheets</h2>
+            <p>Access comprehensive practice sheets for various mathematics topics. Click on any sheet to view it directly in your browser, with an option to download.</p>
+            <a href="#chapters" class="btn">Explore Practice Sheets</a>
+        </div>
+    </section>
+
+    <!-- Chapters Section -->
+    <section id="chapters">
+        <div class="container">
+            <h2 class="section-title">Mathematics Chapters</h2>
+            <div class="chapters-grid">
+                <!-- Algebra -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Algebra</h3>
+                        <p>Equations, Expressions, Functions</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Practice sheets for algebraic equations, expressions, and functions.</p>
+                        <ul class="resources-list">
+                            <li><a class="pdf-link" data-pdf="algebra/sheet1.pdf"><i class="fas fa-file-pdf"></i> Algebra Sheet 1</a></li>
+                            <li><a class="pdf-link" data-pdf="algebra/sheet2.pdf"><i class="fas fa-file-pdf"></i> Algebra Sheet 2</a></li>
+                            <li><a class="pdf-link" data-pdf="algebra/sheet3.pdf"><i class="fas fa-file-pdf"></i> Algebra Sheet 3</a></li>
+                            <li><a class="pdf-link" data-pdf="algebra/sheet4.pdf"><i class="fas fa-file-pdf"></i> Algebra Sheet 4</a></li>
+                            <li><a class="pdf-link" data-pdf="algebra/sheet5.pdf"><i class="fas fa-file-pdf"></i> Algebra Sheet 5</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Calculation & Simplification -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Calculation & Simplification</h3>
+                        <p>Basic Operations, Simplification</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Practice sheets for calculation techniques and simplification methods.</p>
+                        <ul class="resources-list">
+                            <li><a class="pdf-link" data-pdf="calculation/sheet1.pdf"><i class="fas fa-file-pdf"></i> Calculation Sheet 1</a></li>
+                            <li><a class="pdf-link" data-pdf="calculation/sheet2.pdf"><i class="fas fa-file-pdf"></i> Calculation Sheet 2</a></li>
+                            <li><a class="pdf-link" data-pdf="calculation/sheet3.pdf"><i class="fas fa-file-pdf"></i> Calculation Sheet 3</a></li>
+                            <li><a class="pdf-link" data-pdf="calculation/sheet4.pdf"><i class="fas fa-file-pdf"></i> Calculation Sheet 4</a></li>
+                            <li><a class="pdf-link" data-pdf="calculation/sheet5.pdf"><i class="fas fa-file-pdf"></i> Calculation Sheet 5</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Coordinate Geometry -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Coordinate Geometry</h3>
+                        <p>Points, Lines, Curves</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Practice sheets for coordinate geometry concepts and problems.</p>
+                        <ul class="resources-list">
+                            <li><a class="pdf-link" data-pdf="coordinate-geometry/sheet1.pdf"><i class="fas fa-file-pdf"></i> Coordinate Geometry Sheet 1</a></li>
+                            <li><a class="pdf-link" data-pdf="coordinate-geometry/sheet2.pdf"><i class="fas fa-file-pdf"></i> Coordinate Geometry Sheet 2</a></li>
+                            <li><a class="pdf-link" data-pdf="coordinate-geometry/sheet3.pdf"><i class="fas fa-file-pdf"></i> Coordinate Geometry Sheet 3</a></li>
+                            <li><a class="pdf-link" data-pdf="coordinate-geometry/sheet4.pdf"><i class="fas fa-file-pdf"></i> Coordinate Geometry Sheet 4</a></li>
+                            <li><a class="pdf-link" data-pdf="coordinate-geometry/sheet5.pdf"><i class="fas fa-file-pdf"></i> Coordinate Geometry Sheet 5</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- DI (Data Interpretation) -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Data Interpretation</h3>
+                        <p>Charts, Graphs, Analysis</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Practice sheets for data interpretation and analysis.</p>
+                        <ul class="resources-list">
+                            <li><a class="pdf-link" data-pdf="di/sheet1.pdf"><i class="fas fa-file-pdf"></i> DI Sheet 1</a></li>
+                            <li><a class="pdf-link" data-pdf="di/sheet2.pdf"><i class="fas fa-file-pdf"></i> DI Sheet 2</a></li>
+                            <li><a class="pdf-link" data-pdf="di/sheet3.pdf"><i class="fas fa-file-pdf"></i> DI Sheet 3</a></li>
+                            <li><a class="pdf-link" data-pdf="di/sheet4.pdf"><i class="fas fa-file-pdf"></i> DI Sheet 4</a></li>
+                            <li><a class="pdf-link" data-pdf="di/sheet5.pdf"><i class="fas fa-file-pdf"></i> DI Sheet 5</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Geometry -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Geometry</h3>
+                        <p>Shapes, Theorems, Proofs</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Practice sheets for geometry concepts and problem solving.</p>
+                        <ul class="resources-list">
+                            <li><a class="pdf-link" data-pdf="geometry/sheet1.pdf"><i class="fas fa-file-pdf"></i> Geometry Sheet 1</a></li>
+                            <li><a class="pdf-link" data-pdf="geometry/sheet2.pdf"><i class="fas fa-file-pdf"></i> Geometry Sheet 2</a></li>
+                            <li><a class="pdf-link" data-pdf="geometry/sheet3.pdf"><i class="fas fa-file-pdf"></i> Geometry Sheet 3</a></li>
+                            <li><a class="pdf-link" data-pdf="geometry/sheet4.pdf"><i class="fas fa-file-pdf"></i> Geometry Sheet 4</a></li>
+                            <li><a class="pdf-link" data-pdf="geometry/sheet5.pdf"><i class="fas fa-file-pdf"></i> Geometry Sheet 5</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Height and Distance -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Height and Distance</h3>
+                        <p>Trigonometry Applications</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Practice sheets for height and distance problems.</p>
+                        <ul class="resources-list">
+                            <li><a class="pdf-link" data-pdf="height-distance/sheet1.pdf"><i class="fas fa-file-pdf"></i> Height & Distance Sheet 1</a></li>
+                            <li><a class="pdf-link" data-pdf="height-distance/sheet2.pdf"><i class="fas fa-file-pdf"></i> Height & Distance Sheet 2</a></li>
+                            <li><a class="pdf-link" data-pdf="height-distance/sheet3.pdf"><i class="fas fa-file-pdf"></i> Height & Distance Sheet 3</a></li>
+                            <li><a class="pdf-link" data-pdf="height-distance/sheet4.pdf"><i class="fas fa-file-pdf"></i> Height & Distance Sheet 4</a></li>
+                            <li><a class="pdf-link" data-pdf="height-distance/sheet5.pdf"><i class="fas fa-file-pdf"></i> Height & Distance Sheet 5</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- LCM & HCF -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>LCM & HCF</h3>
+                        <p>Number Theory</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Practice sheets for LCM and HCF problems.</p>
+                        <ul class="resources-list">
+                            <li><a class="pdf-link" data-pdf="lcm-hcf/sheet1.pdf"><i class="fas fa-file-pdf"></i> LCM & HCF Sheet 1</a></li>
+                            <li><a class="pdf-link" data-pdf="lcm-hcf/sheet2.pdf"><i class="fas fa-file-pdf"></i> LCM & HCF Sheet 2</a></li>
+                            <li><a class="pdf-link" data-pdf="lcm-hcf/sheet3.pdf"><i class="fas fa-file-pdf"></i> LCM & HCF Sheet 3</a></li>
+                            <li><a class="pdf-link" data-pdf="lcm-hcf/sheet4.pdf"><i class="fas fa-file-pdf"></i> LCM & HCF Sheet 4</a></li>
+                            <li><a class="pdf-link" data-pdf="lcm-hcf/sheet5.pdf"><i class="fas fa-file-pdf"></i> LCM & HCF Sheet 5</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Mensuration 2D -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Mensuration 2D</h3>
+                        <p>Area, Perimeter</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Practice sheets for 2D mensuration problems.</p>
+                        <ul class="resources-list">
+                            <li><a class="pdf-link" data-pdf="mensuration-2d/sheet1.pdf"><i class="fas fa-file-pdf"></i> Mensuration 2D Sheet 1</a></li>
+                            <li><a class="pdf-link" data-pdf="mensuration-2d/sheet2.pdf"><i class="fas fa-file-pdf"></i> Mensuration 2D Sheet 2</a></li>
+                            <li><a class="pdf-link" data-pdf="mensuration-2d/sheet3.pdf"><i class="fas fa-file-pdf"></i> Mensuration 2D Sheet 3</a></li>
+                            <li><a class="pdf-link" data-pdf="mensuration-2d/sheet4.pdf"><i class="fas fa-file-pdf"></i> Mensuration 2D Sheet 4</a></li>
+                            <li><a class="pdf-link" data-pdf="mensuration-2d/sheet5.pdf"><i class="fas fa-file-pdf"></i> Mensuration 2D Sheet 5</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Mensuration 3D -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Mensuration 3D</h3>
+                        <p>Volume, Surface Area</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Practice sheets for 3D mensuration problems.</p>
+                        <ul class="resources-list">
+                            <li><a class="pdf-link" data-pdf="mensuration-3d/sheet1.pdf"><i class="fas fa-file-pdf"></i> Mensuration 3D Sheet 1</a></li>
+                            <li><a class="pdf-link" data-pdf="mensuration-3d/sheet2.pdf"><i class="fas fa-file-pdf"></i> Mensuration 3D Sheet 2</a></li>
+                            <li><a class="pdf-link" data-pdf="mensuration-3d/sheet3.pdf"><i class="fas fa-file-pdf"></i> Mensuration 3D Sheet 3</a></li>
+                            <li><a class="pdf-link" data-pdf="mensuration-3d/sheet4.pdf"><i class="fas fa-file-pdf"></i> Mensuration 3D Sheet 4</a></li>
+                            <li><a class="pdf-link" data-pdf="mensuration-3d/sheet5.pdf"><i class="fas fa-file-pdf"></i> Mensuration 3D Sheet 5</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Number System -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Number System</h3>
+                        <p>Types, Properties, Operations</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Practice sheets for number system concepts.</p>
+                        <ul class="resources-list">
+                            <li><a class="pdf-link" data-pdf="number-system/sheet1.pdf"><i class="fas fa-file-pdf"></i> Number System Sheet 1</a></li>
+                            <li><a class="pdf-link" data-pdf="number-system/sheet2.pdf"><i class="fas fa-file-pdf"></i> Number System Sheet 2</a></li>
+                            <li><a class="pdf-link" data-pdf="number-system/sheet3.pdf"><i class="fas fa-file-pdf"></i> Number System Sheet 3</a></li>
+                            <li><a class="pdf-link" data-pdf="number-system/sheet4.pdf"><i class="fas fa-file-pdf"></i> Number System Sheet 4</a></li>
+                            <li><a class="pdf-link" data-pdf="number-system/sheet5.pdf"><i class="fas fa-file-pdf"></i> Number System Sheet 5</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Permutation and Combination -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Permutation and Combination</h3>
+                        <p>Counting Principles</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Practice sheets for permutation and combination problems.</p>
+                        <ul class="resources-list">
+                            <li><a class="pdf-link" data-pdf="permutation-combination/sheet1.pdf"><i class="fas fa-file-pdf"></i> Permutation & Combination Sheet 1</a></li>
+                            <li><a class="pdf-link" data-pdf="permutation-combination/sheet2.pdf"><i class="fas fa-file-pdf"></i> Permutation & Combination Sheet 2</a></li>
+                            <li><a class="pdf-link" data-pdf="permutation-combination/sheet3.pdf"><i class="fas fa-file-pdf"></i> Permutation & Combination Sheet 3</a></li>
+                            <li><a class="pdf-link" data-pdf="permutation-combination/sheet4.pdf"><i class="fas fa-file-pdf"></i> Permutation & Combination Sheet 4</a></li>
+                            <li><a class="pdf-link" data-pdf="permutation-combination/sheet5.pdf"><i class="fas fa-file-pdf"></i> Permutation & Combination Sheet 5</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Probability -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Probability</h3>
+                        <p>Chance, Likelihood</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Practice sheets for probability concepts and calculations.</p>
+                        <ul class="resources-list">
+                            <li><a class="pdf-link" data-pdf="probability/sheet1.pdf"><i class="fas fa-file-pdf"></i> Probability Sheet 1</a></li>
+                            <li><a class="pdf-link" data-pdf="probability/sheet2.pdf"><i class="fas fa-file-pdf"></i> Probability Sheet 2</a></li>
+                            <li><a class="pdf-link" data-pdf="probability/sheet3.pdf"><i class="fas fa-file-pdf"></i> Probability Sheet 3</a></li>
+                            <li><a class="pdf-link" data-pdf="probability/sheet4.pdf"><i class="fas fa-file-pdf"></i> Probability Sheet 4</a></li>
+                            <li><a class="pdf-link" data-pdf="probability/sheet5.pdf"><i class="fas fa-file-pdf"></i> Probability Sheet 5</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Quadratic Equations -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Quadratic Equations</h3>
+                        <p>Polynomials, Solutions</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Practice sheets for quadratic equations.</p>
+                        <ul class="resources-list">
+                            <li><a class="pdf-link" data-pdf="quadratic-equations/sheet1.pdf"><i class="fas fa-file-pdf"></i> Quadratic Equations Sheet 1</a></li>
+                            <li><a class="pdf-link" data-pdf="quadratic-equations/sheet2.pdf"><i class="fas fa-file-pdf"></i> Quadratic Equations Sheet 2</a></li>
+                            <li><a class="pdf-link" data-pdf="quadratic-equations/sheet3.pdf"><i class="fas fa-file-pdf"></i> Quadratic Equations Sheet 3</a></li>
+                            <li><a class="pdf-link" data-pdf="quadratic-equations/sheet4.pdf"><i class="fas fa-file-pdf"></i> Quadratic Equations Sheet 4</a></li>
+                            <li><a class="pdf-link" data-pdf="quadratic-equations/sheet5.pdf"><i class="fas fa-file-pdf"></i> Quadratic Equations Sheet 5</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Statistics -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Statistics</h3>
+                        <p>Data Analysis, Interpretation</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Practice sheets for statistics concepts.</p>
+                        <ul class="resources-list">
+                            <li><a class="pdf-link" data-pdf="statistics/sheet1.pdf"><i class="fas fa-file-pdf"></i> Statistics Sheet 1</a></li>
+                            <li><a class="pdf-link" data-pdf="statistics/sheet2.pdf"><i class="fas fa-file-pdf"></i> Statistics Sheet 2</a></li>
+                            <li><a class="pdf-link" data-pdf="statistics/sheet3.pdf"><i class="fas fa-file-pdf"></i> Statistics Sheet 3</a></li>
+                            <li><a class="pdf-link" data-pdf="statistics/sheet4.pdf"><i class="fas fa-file-pdf"></i> Statistics Sheet 4</a></li>
+                            <li><a class="pdf-link" data-pdf="statistics/sheet5.pdf"><i class="fas fa-file-pdf"></i> Statistics Sheet 5</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Surds and Indices -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Surds and Indices</h3>
+                        <p>Radicals, Exponents</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Practice sheets for surds and indices.</p>
+                        <ul class="resources-list">
+                            <li><a class="pdf-link" data-pdf="surds-indices/sheet1.pdf"><i class="fas fa-file-pdf"></i> Surds & Indices Sheet 1</a></li>
+                            <li><a class="pdf-link" data-pdf="surds-indices/sheet2.pdf"><i class="fas fa-file-pdf"></i> Surds & Indices Sheet 2</a></li>
+                            <li><a class="pdf-link" data-pdf="surds-indices/sheet3.pdf"><i class="fas fa-file-pdf"></i> Surds & Indices Sheet 3</a></li>
+                            <li><a class="pdf-link" data-pdf="surds-indices/sheet4.pdf"><i class="fas fa-file-pdf"></i> Surds & Indices Sheet 4</a></li>
+                            <li><a class="pdf-link" data-pdf="surds-indices/sheet5.pdf"><i class="fas fa-file-pdf"></i> Surds & Indices Sheet 5</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Trigonometry -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Trigonometry</h3>
+                        <p>Functions, Identities, Equations</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Practice sheets for trigonometric functions and identities.</p>
+                        <ul class="resources-list">
+                            <li><a class="pdf-link" data-pdf="trigonometry/sheet1.pdf"><i class="fas fa-file-pdf"></i> Trigonometry Sheet 1</a></li>
+                            <li><a class="pdf-link" data-pdf="trigonometry/sheet2.pdf"><i class="fas fa-file-pdf"></i> Trigonometry Sheet 2</a></li>
+                            <li><a class="pdf-link" data-pdf="trigonometry/sheet3.pdf"><i class="fas fa-file-pdf"></i> Trigonometry Sheet 3</a></li>
+                            <li><a class="pdf-link" data-pdf="trigonometry/sheet4.pdf"><i class="fas fa-file-pdf"></i> Trigonometry Sheet 4</a></li>
+                            <li><a class="pdf-link" data-pdf="trigonometry/sheet5.pdf"><i class="fas fa-file-pdf"></i> Trigonometry Sheet 5</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>We provide free, high-quality mathematics practice sheets to students and educators worldwide.</p>
+                    <p>Our mission is to make mathematics practice accessible to everyone.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#home">Home</a></p>
+                    <p><a href="#chapters">Chapters</a></p>
+                    <p><a href="#resources">Resources</a></p>
+                    <p><a href="#contact">Contact</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p><i class="fas fa-envelope"></i> Email: contact@mathpracticesheets.com</p>
+                    <p><i class="fas fa-phone"></i> Phone: +1 (555) 123-4567</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Address: 123 Education Street, Knowledge City</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Mathematics Practice Sheets. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PDF Modal -->
+    <div id="pdfModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <iframe id="pdfViewer" class="pdf-viewer" src=""></iframe>
+            <div class="pdf-controls">
+                <div class="pdf-info" id="pdfInfo">Currently viewing: <span id="pdfName"></span></div>
+                <a id="downloadPdf" class="btn" download><i class="fas fa-download"></i> Download PDF</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal
+        const modal = document.getElementById("pdfModal");
+        const pdfViewer = document.getElementById("pdfViewer");
+        const pdfName = document.getElementById("pdfName");
+        const downloadPdf = document.getElementById("downloadPdf");
+        const closeBtn = document.querySelector(".close");
+
+        // Function to open modal with PDF
+        function openPdf(pdfUrl, pdfTitle) {
+            pdfViewer.src = pdfUrl;
+            pdfName.textContent = pdfTitle;
+            downloadPdf.href = pdfUrl;
+            downloadPdf.download = pdfTitle;
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden"; // Prevent scrolling
+        }
+
+        // Close the modal
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+            pdfViewer.src = "";
+            document.body.style.overflow = "auto"; // Enable scrolling
+        }
+
+        // Close when clicking outside of the modal
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                pdfViewer.src = "";
+                document.body.style.overflow = "auto"; // Enable scrolling
+            }
+        }
+
+        // Add event listeners to all PDF links
+        document.querySelectorAll('.pdf-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pdfUrl = this.getAttribute('data-pdf');
+                const pdfTitle = this.textContent;
+                openPdf(pdfUrl, pdfTitle);
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
